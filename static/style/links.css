@@ -1,0 +1,12 @@
+.link_block{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 50%;
+}
+a {
+    font-size: 40;
+}
+/* #container{
+    width: 60%;
+} */

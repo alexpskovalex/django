@@ -9,3 +9,6 @@ def index(request):
 def about(request):
     return render(request, "about.html")
 
+
+def links(request):
+    return render(request, "links.html")

@@ -1,13 +1,68 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-    <head>
-        <link rel="stylesheet" href="{% static 'style\style.css' %}">
-        <link rel="icon" href="{% static 'favicon.ico' %}">
-    </head>
-    <body>
-        
-        
-        
-    </body>
+
+<head>
+    {% include "head_template.html" %}
+
+    <link rel="stylesheet" href="{% static 'style\about.css' %}">
+</head>
+
+<body>
+    {% include "header.html" %}
+    <div id="container">
+        <div id="tagline">
+            Watershop - лучшее решение для доставки воды
+        </div>
+        <img src="{% static 'img\man_drinks.jpeg' %}" alt="" id="logo">
+        <div id="main_block_container">
+
+
+            <div id="general" class="main_blocks">
+                <div class="main_block_picture">
+                    <img src="{% static 'img\water1.png' %}" alt="">
+                </div>
+                <div class="main_block_content">
+                    <h1>CRM система по доставке воды</h1>
+                    <p>Лучшая CRM для доставки бутилированной воды воды. Наша система позволит автоматизировать
+                        бизнес-процессы
+                        и оптимизировать расходы предприятия. Благодаря многолетнему опыту нашей компании CRM система
+                        идеально
+                        подходит для специфики бизнеса</p>
+                </div>
+            </div>
+            <div id="advantages" class="main_blocks">
+                <div class="main_block_content">
+                    <h1>Наши преимущества</h1>
+                    <div id="list">
+                        <ul id="advantages_list">
+                            <li>Высокая скорость работы</li>
+                            <li>Отслеживание тары</li>
+                            <li>Удобство работы </li>
+                            <li>Интеграция с системой маркировки "Честный знак"</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="main_block_picture">
+                    <img src="{% static 'img\water2.jpg' %}" alt="">
+                </div>
+            </div>
+            <div id="our_clients" class="main_blocks">
+                <div class="main_block_picture">
+                    <img src="{% static 'img\water3.jpeg' %}" alt="">
+                </div>
+                <div class="main_block_content">
+                    <h1>Наши клиенты</h1>
+                    <ul id="clients_list">
+                        <li>Вода в Пскове</li>
+                        <li>Вода в Питере</li>
+                        <li>Московский водовоз</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "footer.html" %}
+</body>
+
 </html>
