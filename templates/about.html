@@ -1,15 +1,12 @@
-<!DOCTYPE html>
-{% load static %}
-<html>
-
-<head>
-    {% include "head_template.html" %}
-
+{% extends "base.html" %}
+<!-- <body> -->
+    {% load static %}
+    {% block head %}
     <link rel="stylesheet" href="{% static 'style\about.css' %}">
-</head>
-
-<body>
-    {% include "header.html" %}
+    {% endblock %}
+   
+    <!-- {% include "header.html" %} -->
+    {% block content %}
     <div id="container">
         <div id="tagline">
             Watershop - лучшее решение для доставки воды
@@ -62,7 +59,8 @@
             </div>
         </div>
     </div>
-    {% include "footer.html" %}
+    {% endblock %}
+    <!-- {% include "footer.html" %}
 </body>
 
-</html>
+</html> -->

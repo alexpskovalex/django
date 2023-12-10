@@ -34,16 +34,21 @@ body {
 
 /* Header */
 header {
-    height: 50px;
+    height: 80px;
     background-color: #6495ed;
-
+    display: flex;
+    flex-direction: row;
 }
 header .label {
 
     color: white;
     font-size: 30px;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-left: 30px;
+}
+header .header_logo{
+    height: 70px;
+    width: 70px;
 }
 /* Footer */
 footer {
