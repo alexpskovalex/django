@@ -13,16 +13,22 @@
     <div id="comment">Оставьте заявку и менедженр свяжеться с Вами</div>
     <form action="/pool/" method="post" id="callback_form">
         {% csrf_token %}
-        <label for="name">Ваше имя</label>
+        <!-- <label for="name">Ваше имя</label>
         {{form.name}}
         <br>
         <label for="phone">Ваш номер </label>
         {{form.phone}}
         <br>
-        <input type="submit" value="Отправить">
+        <input type="submit" value="Отправить"> -->
+        {% for field in form %}
+        <div class="form_field">
+            <label for="{{filed.id_for_label}}">{{field.label}}</label>
+            {{field}}
+        </div>
+        {% endfor %}
     </form>
 </div>
 {% else %}
-<div id="container">{{result.name}}  {{result.phone}}</div>
+<div id="container">{{result.name}} {{result.phone}}</div>
 {% endif %}
 {% endblock %}

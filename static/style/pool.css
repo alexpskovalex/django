@@ -1,0 +1,12 @@
+.form_field{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 40%;
+
+}
+form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
