@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+<!-- <body> -->
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'style\pool.css' %}">
+{% endblock %}
+
+<!-- {% include "header.html" %} -->
+{% block content %}
+{% if not result %}
+<div id="container">
+    <div id="head">Купить лицензию системы</div>
+    <div id="comment">Оставьте заявку и менедженр свяжеться с Вами</div>
+    <form action="/pool/" method="post" id="callback_form">
+        {% csrf_token %}
+        <label for="name">Ваше имя</label>
+        {{form.name}}
+        <br>
+        <label for="phone">Ваш номер </label>
+        {{form.phone}}
+        <br>
+        <input type="submit" value="Отправить">
+    </form>
+</div>
+{% else %}
+<div id="container">{{result.name}}  {{result.phone}}</div>
+{% endif %}
+{% endblock %}
