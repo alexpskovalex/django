@@ -12,7 +12,9 @@ body {
     /* grid-template-areas: "header" "content" "footer";
     grid-template-rows: 50px auto 50px; */
     /* overflow-x: hidden; */
-    background-color: #EAF7FF;
+    /* background-color: #EAF7FF; */
+    color: white;
+    background-color:#25274d;
 }
 
 
@@ -35,7 +37,8 @@ body {
 /* Header */
 header {
     height: 80px;
-    background-color: #6495ed;
+    /* background-color: #6495ed; */
+    background-color: #464866;
     display: flex;
     flex-direction: row;
 }
@@ -59,7 +62,7 @@ footer {
     padding: 20px 150px;
     height: 140px;
     /* margin-top: -24px; */
-    background-color: #6495ed;
+    background-color: #464866;
 }
 footer a {
     color: white;

@@ -1,12 +1,27 @@
-.form_field{
+.form_field {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 40%;
+    width: 100%;
 
 }
-form{
+
+form,
+.form {
     display: flex;
     flex-direction: column;
     gap: 20px;
+    width: 40%;
+}
+
+#head {
+    color: #3cf;
+}
+
+input[type=submit] {
+    background-color: #29648a;
+    color: #fff;
+}
+input[type=text]{
+    background-color: #AAABB8
 }

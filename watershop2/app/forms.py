@@ -1,5 +1,10 @@
 from django import forms
 
+
 class CallbackForm(forms.Form):
-    name=forms.CharField(label='Ваше имя',max_length=100)
-    phone=forms.CharField(label='Ваш телефон',max_length=20 )
+    name = forms.CharField(label="Ваше имя", max_length=100)
+    phone = forms.CharField(
+        label="Ваш телефон",
+        max_length=20,
+        widget=forms.TextInput(attrs={"class": "phone"}),
+    )
