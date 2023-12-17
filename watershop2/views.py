@@ -1,8 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .app.forms import CallbackForm
-from django.http import HttpRequest,HttpResponseRedirect,JsonResponse
-
+from django.http import HttpRequest, HttpResponseRedirect, JsonResponse
+from django.contrib.auth.forms import UserCreationForm
+from datetime import datetime
+from django.contrib.auth import login
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -16,13 +18,66 @@ def links(request):
     return render(request, "links.html")
 
 
-def pool(request:HttpRequest):
+def pool(request: HttpRequest):
     if request.method == "POST":
         form = CallbackForm(request.POST)
         if form.is_valid():
             # return JsonResponse{"true":True}
-            return render(request, "pool.html",{"result":form.cleaned_data})
+            return render(request, "pool.html", {"result": form.cleaned_data})
             # return HttpResponseRedirect("/about/")
     else:
         form = CallbackForm()
-    return render(request, "pool.html",{"form":form})
+    return render(request, "pool.html", {"form": form})
+
+
+def registration(request):
+    """Renders the registration page."""
+
+    assert isinstance(request, HttpRequest)
+    regform = UserCreationForm(request.POST or None)
+    if request.method == "POST":  # после отправки формы
+        
+
+        if regform.is_valid():  # валидация полей формы
+            reg_f = regform.save(
+                commit=False
+            )  # не сохраняем автоматически данные формы
+
+            reg_f.is_staff = False  # запрещен вход в административный раздел
+            reg_f.is_active = True  # активный пользователь
+
+            reg_f.is_superuser = False  # не является суперпользователем
+
+            reg_f.date_joined = datetime.now()  # дата регистрации
+
+            reg_f.last_login = datetime.now()  # дата последней авторизации
+
+            reg_f.save()  # сохраняем изменения после добавления данных
+            reg_f.backend = "django.contrib.auth.backends.ModelBackend"
+            login(request, reg_f)
+            return redirect("/")  # переадресация на главную страницу после регистрации
+        # else:
+        #     date = datetime.now()
+        #     return render(
+        #         request,
+        #         "registration.html",
+        #         {
+        #             "regform": regform,  # передача формы в шаблон веб-страницы
+        #             "year": date.year,
+        #         },
+        #     )
+    # else:
+    date = datetime.now()
+    # regform = (
+    #     UserCreationForm()
+    # )  # создание объекта формы для ввода данных нового пользователя
+
+    return render(
+        request,
+        "registration.html",
+        {"regform": regform, "year": date.year},  # передача формы в шаблон веб-страницы
+    )
+
+
+# def login(request):
+#     return render(request, "login.html")

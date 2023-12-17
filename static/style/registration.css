@@ -3,18 +3,11 @@
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-
 }
 
-form,
-.form {
+form {
     display: flex;
     flex-direction: column;
     gap: 20px;
     width: 40%;
 }
-
-#head {
-    color: #3cf;
-}
-

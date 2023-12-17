@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'style\registration.css' %}">
+{% endblock %}
+{% block content %}
+<div id="container">
+    <h2>Регистрация пользователя</h2>
+    <form method="POST"> 
+        {% csrf_token %}
+        {% for field in regform %}
+        <div class="form_field">
+            <label for="{{filed.id_for_label}}">{{field.label}}</label>
+            {{field}}
+        </div>
+        {% endfor %}
+        <input type="submit" class="" value="Зарегистрировать">
+    </form>
+</div>
+{% if regform.errors %}
+хуй
+
+<div class="">{{regform.errors}}</div>
+{% endif %}
+{% endblock %}
