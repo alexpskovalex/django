@@ -1,0 +1,8 @@
+.read{
+    align-self: right;
+}
+.read_container{
+    display: flex;
+    justify-content: end;
+    flex-direction: row;
+}

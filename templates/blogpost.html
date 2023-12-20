@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% load static %}
+{% block head %}
+{% endblock head %}
+{% block content %}
+<div id="container">
+    <h2> {{post_1.title}} </h2>
+
+    <p> {{post_1.content|linebreaksbr}} </p> {# вывод текста по абзацам#}
+</div>
+{% endblock %}

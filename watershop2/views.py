@@ -5,6 +5,10 @@ from django.http import HttpRequest, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime
 from django.contrib.auth import login
+from django.db import models
+
+from .models import Blog
+
 
 def index(request):
     return HttpResponse("Hello, world. You're at the polls index.")
@@ -36,8 +40,6 @@ def registration(request):
     assert isinstance(request, HttpRequest)
     regform = UserCreationForm(request.POST or None)
     if request.method == "POST":  # после отправки формы
-        
-
         if regform.is_valid():  # валидация полей формы
             reg_f = regform.save(
                 commit=False
@@ -81,3 +83,32 @@ def registration(request):
 
 # def login(request):
 #     return render(request, "login.html")
+def blog(request):
+    """Renders the blog page."""
+    assert isinstance(request, HttpRequest)
+    posts = Blog.objects.all()  # запрос на выбор всех статей блога из модели
+    return render(
+        request,
+        "blog.html",
+        {
+            "title": "Блог",
+            "posts": posts,  # передача списка статей в шаблон веб-страницы
+            "year": datetime.now().year,
+        },
+    )
+
+
+def blogpost(request, parametr):
+    """Renders the blogpost page."""
+    assert isinstance(request, HttpRequest)
+    post_1 = Blog.objects.get(
+        id=parametr
+    )  # запрос на выбор конкретной статьи по параметру
+    return render(
+        request,
+        "blogpost.html",
+        {
+            "post_1": post_1,  # передача конкретной статьи в шаблон веб-страницы
+            "year": datetime.now().year,
+        },
+    )

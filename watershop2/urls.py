@@ -24,4 +24,6 @@ urlpatterns = [
         name="logout",
     ),
     path("registration/", views.registration, name="registration"),
+    path("blog/", views.blog, name="blog"),
+    path('blogpost/<int:parametr>/', views.blogpost, name='blogpost'),
 ]
