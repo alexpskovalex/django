@@ -15,7 +15,10 @@ class Blog(models.Model):
     posted = models.DateTimeField(
         default=datetime.now(), db_index=True, verbose_name="Опубликована"
     )
-    author = models.ForeignKey(User, null=True, blank=True, on_delete = models.SET_NULL, verbose_name = "Автор")
+    author = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Автор"
+    )
+
     # Методы класса:
     def get_absolute_url(self):  # метод возвращает строку с URL-адресом записи
         return reverse("blogpost", args=[str(self.id)])
@@ -37,3 +40,28 @@ class Blog(models.Model):
 
 
 admin.site.register(Blog)
+
+
+class Comment(models.Model):
+    author = models.ForeignKey(
+        User, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Автор"
+    )
+    blog_id = models.ForeignKey(
+        Blog, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Блог"
+    )
+    text = models.TextField(verbose_name="Текст комментария")
+
+    created = models.DateTimeField(
+        default=datetime.now(), db_index=True, verbose_name="Опубликована"
+    )
+
+    class Meta:
+        db_table = "Comments"  # имя таблицы для модели
+        ordering = [
+            "-created"
+        ]  # порядок сортировки данных в модели ("-" означает по убыванию)
+        verbose_name = "комментарий"  # имя, под которым модель будет отображаться в административном разделе (для одной статьи блога)
+        verbose_name_plural = "комментарии"
+
+
+admin.site.register(Comment)

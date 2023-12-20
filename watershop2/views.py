@@ -1,13 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .app.forms import CallbackForm
+from .app.forms import CallbackForm, CommentForm
 from django.http import HttpRequest, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime
 from django.contrib.auth import login
 from django.db import models
-
-from .models import Blog
+from .models import Blog, Comment
 
 
 def index(request):
@@ -101,14 +100,37 @@ def blog(request):
 def blogpost(request, parametr):
     """Renders the blogpost page."""
     assert isinstance(request, HttpRequest)
+    form = CommentForm(request.POST or None)
     post_1 = Blog.objects.get(
         id=parametr
-    )  # запрос на выбор конкретной статьи по параметру
+    ) 
+    if request.method == "POST":  # после отправки данных формы на сервер методом POST
+        if form.is_valid():
+            comment_f = form.save(commit=False)
+            comment_f.author = (
+                request.user
+            )  # добавляем (так как этого поля нет в форме) в модель Комментария (Comment) в поле автор авторизованного пользователя
+            comment_f.date = (
+                datetime.now()
+            )  # добавляем в модель Комментария (Comment) текущую дату
+            comment_f.blog_id = Blog.objects.get(
+                id=parametr
+            )  # добавляем в модель Комментария (Comment) статью, для которой данный комментарий
+            comment_f.save()  # сохраняем изменения после добавления полей
+            return redirect(
+                "blogpost", parametr=post_1.id
+            )  # переадресация на ту же страницу статьи после отправки комментария
+        # else:
+        #     form = CommentForm()  # создание формы для ввода комментария
+ # запрос на выбор конкретной статьи по параметру
+    comments = Comment.objects.filter(blog_id=parametr)
     return render(
         request,
         "blogpost.html",
         {
+            "form": form,
             "post_1": post_1,  # передача конкретной статьи в шаблон веб-страницы
             "year": datetime.now().year,
+            "comments": comments,
         },
     )

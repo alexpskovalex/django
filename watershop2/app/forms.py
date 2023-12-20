@@ -1,6 +1,8 @@
 from django import forms
-
+from django.db import models
+from ..models import Comment
 from django.contrib.auth.forms import AuthenticationForm
+
 # from django.utils.translation import ugettext_lazy as _
 
 
@@ -17,4 +19,17 @@ class BootstrapAuthForm(AuthenticationForm):
     username = forms.CharField(
         max_length=254, widget=forms.TextInput({"placeholder": "Имя пользователя"})
     )
-    password= forms.CharField(label="Пароль",widget=forms.PasswordInput({"placeholder":"Пароль"}))
+    password = forms.CharField(
+        label="Пароль", widget=forms.PasswordInput({"placeholder": "Пароль"})
+    )
+
+
+class CommentForm(forms.ModelForm):
+    text = forms.CharField(
+        widget=forms.Textarea(attrs={"class": "comment_text"}),
+    )
+
+    class Meta:
+        model = Comment  # используемая модель
+        fields = ("text",)  # требуется заполнить только поле text
+        labels = {"text": "Комментарий"}  # метка к полю формы text
