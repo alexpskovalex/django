@@ -1,66 +1,87 @@
 {% extends "base.html" %}
 <!-- <body> -->
-    {% load static %}
-    {% block head %}
-    <link rel="stylesheet" href="{% static 'style\about.css' %}">
-    {% endblock %}
-   
-    <!-- {% include "header.html" %} -->
-    {% block content %}
-    <div id="container">
-        <div id="tagline">
-            Watershop - лучшее решение для доставки воды
+{% load static %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'style\about.css' %}">
+{% endblock %}
+
+<!-- {% include "header.html" %} -->
+{% block content %}
+<div id="container">
+    <div id="tagline">
+        Watershop - лучшее решение для доставки воды
+    </div>
+    <div id="carouselExample" class="carousel slide mt-5">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{% static 'img\man_drinks.jpeg' %}" class="d-block w-90 mx-auto" alt="img">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img\water4.jpg' %}" class="d-block w-90 mx-auto" alt="img">
+            </div>
+            <div class="carousel-item">
+                <img src="{% static 'img\water5.jpg' %}" class="d-block w-90 mx-auto" alt="img">
+            </div>
         </div>
-        <img src="{% static 'img\man_drinks.jpeg' %}" alt="" id="logo">
-        <div id="main_block_container">
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden invert-color">Next</span>
+        </button>
+    </div>
+    <!-- <img src="{% static 'img\man_drinks.jpeg' %}" alt="" id="logo"> -->
+    <div id="main_block_container">
 
 
-            <div id="general" class="main_blocks">
-                <div class="main_block_picture">
-                    <img src="{% static 'img\water1.png' %}" alt="">
-                </div>
-                <div class="main_block_content">
-                    <h1>CRM система по доставке воды</h1>
-                    <p>Лучшая CRM для доставки бутилированной воды воды. Наша система позволит автоматизировать
-                        бизнес-процессы
-                        и оптимизировать расходы предприятия. Благодаря многолетнему опыту нашей компании CRM система
-                        идеально
-                        подходит для специфики бизнеса</p>
-                </div>
+        <div id="general" class="main_blocks">
+            <div class="main_block_picture">
+                <img src="{% static 'img\water1.png' %}" alt="">
             </div>
-            <div id="advantages" class="main_blocks">
-                <div class="main_block_content">
-                    <h1>Наши преимущества</h1>
-                    <div id="list">
-                        <ul id="advantages_list">
-                            <li>Высокая скорость работы</li>
-                            <li>Отслеживание тары</li>
-                            <li>Удобство работы </li>
-                            <li>Интеграция с системой маркировки "Честный знак"</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="main_block_picture">
-                    <img src="{% static 'img\water2.jpg' %}" alt="">
-                </div>
+            <div class="main_block_content">
+                <h1>CRM система по доставке воды</h1>
+                <p>Лучшая CRM для доставки бутилированной воды воды. Наша система позволит автоматизировать
+                    бизнес-процессы
+                    и оптимизировать расходы предприятия. Благодаря многолетнему опыту нашей компании CRM система
+                    идеально
+                    подходит для специфики бизнеса</p>
             </div>
-            <div id="our_clients" class="main_blocks">
-                <div class="main_block_picture">
-                    <img src="{% static 'img\water3.jpeg' %}" alt="">
-                </div>
-                <div class="main_block_content">
-                    <h1>Наши клиенты</h1>
-                    <ul id="clients_list">
-                        <li>Вода в Пскове</li>
-                        <li>Вода в Питере</li>
-                        <li>Московский водовоз</li>
+        </div>
+        <div id="advantages" class="main_blocks">
+            <div class="main_block_content">
+                <h1>Наши преимущества</h1>
+                <div id="list">
+                    <ul id="advantages_list">
+                        <li>Высокая скорость работы</li>
+                        <li>Отслеживание тары</li>
+                        <li>Удобство работы </li>
+                        <li>Интеграция с системой маркировки "Честный знак"</li>
                     </ul>
                 </div>
             </div>
+            <div class="main_block_picture">
+                <img src="{% static 'img\water2.jpg' %}" alt="">
+            </div>
+        </div>
+        <div id="our_clients" class="main_blocks">
+            <div class="main_block_picture">
+                <img src="{% static 'img\water3.jpeg' %}" alt="">
+            </div>
+            <div class="main_block_content">
+                <h1>Наши клиенты</h1>
+                <ul id="clients_list">
+                    <li>Вода в Пскове</li>
+                    <li>Вода в Питере</li>
+                    <li>Московский водовоз</li>
+                </ul>
+            </div>
         </div>
     </div>
-    {% endblock %}
-    <!-- {% include "footer.html" %}
+</div>
+{% endblock %}
+<!-- {% include "footer.html" %}
 </body>
 
 </html> -->
