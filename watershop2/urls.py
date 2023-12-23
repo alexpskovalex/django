@@ -3,9 +3,12 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 from .app.forms import BootstrapAuthForm
+
 urlpatterns = [
     path("", views.about, name="index"),
     path("about/", views.about, name="about"),
+    path("about_us/", views.about_us, name="about_us"),
+    path("contact/", views.contact, name="contact"),
     path("links/", views.links, name="links"),
     path("pool/", views.pool, name="pool"),
     path(
@@ -25,5 +28,5 @@ urlpatterns = [
     ),
     path("registration/", views.registration, name="registration"),
     path("blog/", views.blog, name="blog"),
-    path('blogpost/<int:parametr>/', views.blogpost, name='blogpost'),
+    path("blogpost/<int:parametr>/", views.blogpost, name="blogpost"),
 ]

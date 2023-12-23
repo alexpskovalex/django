@@ -17,6 +17,14 @@ def about(request):
     return render(request, "about.html")
 
 
+def about_us(request):
+    return render(request, "about_us.html")
+
+
+def contact(request):
+    return render(request, "contact.html")
+
+
 def links(request):
     return render(request, "links.html")
 
@@ -101,9 +109,7 @@ def blogpost(request, parametr):
     """Renders the blogpost page."""
     assert isinstance(request, HttpRequest)
     form = CommentForm(request.POST or None)
-    post_1 = Blog.objects.get(
-        id=parametr
-    ) 
+    post_1 = Blog.objects.get(id=parametr)
     if request.method == "POST":  # после отправки данных формы на сервер методом POST
         if form.is_valid():
             comment_f = form.save(commit=False)
@@ -122,7 +128,7 @@ def blogpost(request, parametr):
             )  # переадресация на ту же страницу статьи после отправки комментария
         # else:
         #     form = CommentForm()  # создание формы для ввода комментария
- # запрос на выбор конкретной статьи по параметру
+    # запрос на выбор конкретной статьи по параметру
     comments = Comment.objects.filter(blog_id=parametr)
     return render(
         request,
