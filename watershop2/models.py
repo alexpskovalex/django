@@ -18,6 +18,7 @@ class Blog(models.Model):
     author = models.ForeignKey(
         User, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Автор"
     )
+    image = models.FileField(default='tmp.jpg',verbose_name='Путь к картинке')
 
     # Методы класса:
     def get_absolute_url(self):  # метод возвращает строку с URL-адресом записи

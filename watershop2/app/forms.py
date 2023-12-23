@@ -1,6 +1,6 @@
 from django import forms
 from django.db import models
-from ..models import Comment
+from ..models import Comment, Blog
 from django.contrib.auth.forms import AuthenticationForm
 
 # from django.utils.translation import ugettext_lazy as _
@@ -33,3 +33,15 @@ class CommentForm(forms.ModelForm):
         model = Comment  # используемая модель
         fields = ("text",)  # требуется заполнить только поле text
         labels = {"text": "Комментарий"}  # метка к полю формы text
+
+
+class BlogForm(forms.ModelForm):
+    class Meta:
+        model = Blog
+        fields = ("title", "description", "content", "image")
+        labels = {
+            "title": "Заголовок",
+            "description": "Краткое описание",
+            "content": "Полный текст",
+            "image": "Картинка",
+        }

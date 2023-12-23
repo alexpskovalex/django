@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .app.forms import CallbackForm, CommentForm
+from .app.forms import BlogForm, CallbackForm, CommentForm
 from django.http import HttpRequest, HttpResponseRedirect, JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime
@@ -138,5 +138,38 @@ def blogpost(request, parametr):
             "post_1": post_1,  # передача конкретной статьи в шаблон веб-страницы
             "year": datetime.now().year,
             "comments": comments,
+        },
+    )
+
+
+def new_blog(request):
+    """Renders the blogpost page."""
+    assert isinstance(request, HttpRequest)
+    
+    if request.method == "POST":  # после отправки данных формы на сервер методом POST
+        form = BlogForm(request.POST,request.FILES)
+        if form.is_valid():
+            blog_f = form.save(commit=False)
+            blog_f.author = (
+                request.user
+            )  # добавляем (так как этого поля нет в форме) в модель Комментария (Comment) в поле автор авторизованного пользователя
+            blog_f.posted = (
+                datetime.now()
+            )  # добавляем в модель Комментария (Comment) текущую дату
+            blog_f.save()  # сохраняем изменения после добавления полей
+            return redirect(
+                "blog",
+            )  # переадресация на ту же страницу статьи после отправки комментария
+        # else:
+        #     form = CommentForm()  # создание формы для ввода комментария
+    # запрос на выбор конкретной статьи по параметру
+    else:
+          form = BlogForm()
+    return render(
+        request,
+        "new_blog.html",
+        {
+            "form": form,
+            "year": datetime.now().year,
         },
     )

@@ -3,6 +3,9 @@ from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
 from .app.forms import BootstrapAuthForm
+from django.conf.urls.static import static
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from django.conf import settings
 
 urlpatterns = [
     path("", views.about, name="index"),
@@ -11,6 +14,7 @@ urlpatterns = [
     path("contact/", views.contact, name="contact"),
     path("links/", views.links, name="links"),
     path("pool/", views.pool, name="pool"),
+    path("new_blog/", views.new_blog, name="new_blog"),
     path(
         "login/",
         auth_views.LoginView.as_view(
@@ -30,3 +34,6 @@ urlpatterns = [
     path("blog/", views.blog, name="blog"),
     path("blogpost/<int:parametr>/", views.blogpost, name="blogpost"),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+urlpatterns += staticfiles_urlpatterns()

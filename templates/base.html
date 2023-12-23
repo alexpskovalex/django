@@ -30,6 +30,9 @@
             <div class="header_button"><a class="header_button_link" href="{% url 'blog' %}">Блог</a></div>
         </div>
         <div id="header_right">
+            {% if user.is_superuser %}
+            <div class="header_button"><a class="header_button_link" href="{% url 'new_blog' %}">Новая запись</a></div>
+            {% endif %}
             {% if not user.is_authenticated %}
             <div class="header_button"><a class="header_button_link" href="{% url 'registration' %}">Регистрация</a></div>
             <div class="header_button"><a class="header_button_link" href="{% url 'login' %}">Вход</a></div>
@@ -37,6 +40,7 @@
             <div class="header_button">{{user.username}}</div>
             <div class="header_button"><a class="header_button_link" href="{% url 'logout' %}">Выход</a></div>
             {% endif %}
+
         </div>
     </header>
     {% block content %}
