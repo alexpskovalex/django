@@ -15,6 +15,8 @@ def index(request):
 
 def about(request):
     return render(request, "about.html")
+def video(request):
+    return render(request, "video.html")
 
 
 def about_us(request):

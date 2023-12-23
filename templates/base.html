@@ -28,6 +28,7 @@
             <img class="header_logo" src="{% static 'img\transparent_main_logo.png' %}" alt="">
             <div class="label">Watershop</div>
             <div class="header_button"><a class="header_button_link" href="{% url 'blog' %}">Блог</a></div>
+            <div class="header_button"><a class="header_button_link" href="{% url 'video' %}">Видео</a></div>
         </div>
         <div id="header_right">
             {% if user.is_superuser %}

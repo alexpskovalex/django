@@ -10,6 +10,7 @@ from django.conf import settings
 urlpatterns = [
     path("", views.about, name="index"),
     path("about/", views.about, name="about"),
+    path("video/", views.video, name="video"),
     path("about_us/", views.about_us, name="about_us"),
     path("contact/", views.contact, name="contact"),
     path("links/", views.links, name="links"),
